@@ -1,16 +1,122 @@
-# React + Vite
+# Payment Card Tool Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Để run: Trong terminal tại folder PaymentcardtoolsClient chạy lệnh:
 
-Currently, two official plugins are available:
+```bash
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Yêu cầu hệ thống
 
-## React Compiler
+- Node.js (phiên bản 16.x trở lên)
+- npm hoặc yarn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Cài đặt
 
-## Expanding the ESLint configuration
+### 1. Clone repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/Waito3007/PaymentcardtoolsClient.git
+cd PaymentcardtoolsClient
+```
+
+### 2. Cài đặt dependencies
+
+```bash
+npm install
+```
+
+hoặc nếu sử dụng yarn:
+
+```bash
+yarn install
+```
+
+## Khởi động ứng dụng
+
+### Development mode
+
+Chạy ứng dụng ở chế độ development với hot reload:
+
+```bash
+npm run dev
+```
+
+Ứng dụng sẽ chạy tại: `http://localhost:5173`
+
+### Build production
+
+Build ứng dụng cho production:
+
+```bash
+npm run build
+```
+
+Các file build sẽ được tạo trong thư mục `dist/`
+
+### Preview production build
+
+Xem trước bản build production:
+
+```bash
+npm run preview
+```
+
+### Lint code
+
+Kiểm tra code với ESLint:
+
+```bash
+npm run lint
+```
+
+## Cấu trúc thư mục
+
+```
+PaymentcardtoolsClient/
+├── public/              # Static assets
+├── src/
+│   ├── assets/         # Images, fonts, etc.
+│   │   └── logo/       # Logo files
+│   ├── components/     # React components
+│   │   ├── Pagination.jsx
+│   │   ├── ResultBadge.jsx
+│   │   ├── ResultTable.jsx
+│   │   ├── SummaryCard.jsx
+│   │   └── Toolbar.jsx
+│   ├── utils/          # Utility functions
+│   │   └── listing.js
+│   ├── App.jsx         # Main App component
+│   ├── App.css         # App styles
+│   ├── main.jsx        # Entry point
+│   └── index.css       # Global styles
+├── index.html          # HTML template
+├── package.json        # Dependencies & scripts
+├── vite.config.js      # Vite configuration
+└── eslint.config.js    # ESLint configuration
+```
+
+## Công nghệ sử dụng
+
+- **React 19.2.0** - UI Library
+- **Vite 7.2.4** - Build tool & dev server
+- **ESLint** - Code linting
+
+## Troubleshooting
+
+### Lỗi khi cài đặt dependencies
+
+Thử xóa `node_modules` và `package-lock.json`, sau đó cài lại:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### Port đã được sử dụng
+
+Nếu port 5173 đã được sử dụng, Vite sẽ tự động chọn port khác. Kiểm tra terminal để xem port đang sử dụng.
+
+## License
+
+Private project
