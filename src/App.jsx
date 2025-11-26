@@ -92,6 +92,36 @@ function App() {
     URL.revokeObjectURL(url);
   };
 
+  const exportFullCSV = (details, label) => {
+    if (!details?.length) return;
+    
+    const timestamp = new Date().toISOString();
+    const statusMap = { 1: "Valid", 2: "Invalid", 3: "Error" };
+    
+    // CSV Header
+    const header = "ID,Timestamp,Status,Message,KEY,KCV";
+    
+    // CSV Rows
+    const rows = details.map((d, index) => {
+      const id = index + 1;
+      const status = statusMap[d.status] || "Unknown";
+      const message = (d.message || "").replace(/"/g, '""'); // Escape quotes
+      const key = d.inputKey || "";
+      const kcv = d.kcv || "";
+      
+      return `${id},${timestamp},${status},"${message}",${key},${kcv}`;
+    });
+    
+    const csvContent = [header, ...rows].join("\n");
+    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `keys-full-${label}-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const copyText = async (text) => {
     if (!text) return;
     try {
@@ -268,12 +298,14 @@ function App() {
               onFilterChange={setFilterStatus}
               onExportValid={() => exportTxt(validList, "valid")}
               onExportInvalid={() => exportTxt(invalidList, "invalid")}
+              onExportFull={() => exportFullCSV(batchResult?.details || [], "all")}
               onCopyAll={() =>
                 copyText(detailsFiltered.map((d) => d.inputKey).join("\n"))
               }
               disableCopyAll={!detailsFiltered.length}
               disableValid={!validList.length}
               disableInvalid={!invalidList.length}
+              disableFull={!batchResult?.details?.length}
             />
             <Pagination
               page={safePage}
@@ -329,12 +361,14 @@ function App() {
               onFilterChange={setFilterStatus}
               onExportValid={() => exportTxt(validList, "valid")}
               onExportInvalid={() => exportTxt(invalidList, "invalid")}
+              onExportFull={() => exportFullCSV(fileResult?.details || [], "all")}
               onCopyAll={() =>
                 copyText(detailsFiltered.map((d) => d.inputKey).join("\n"))
               }
               disableCopyAll={!detailsFiltered.length}
               disableValid={!validList.length}
               disableInvalid={!invalidList.length}
+              disableFull={!fileResult?.details?.length}
             />
             <Pagination
               page={safePage}

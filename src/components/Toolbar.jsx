@@ -3,9 +3,11 @@ const Toolbar = ({
   onFilterChange,
   onExportValid,
   onExportInvalid,
+  onExportFull,
   onCopyAll,
   disableValid,
   disableInvalid,
+  disableFull,
   disableCopyAll,
 }) => (
   <div className="toolbar">
@@ -39,6 +41,9 @@ const Toolbar = ({
       </button>
       <button type="button" disabled={disableInvalid} onClick={onExportInvalid}>
         Xuất key không hợp lệ (.txt)
+      </button>
+      <button type="button" disabled={disableFull} onClick={onExportFull}>
+        Xuất file đầy đủ (.csv)
       </button>
       {onCopyAll && (
         <button type="button" disabled={disableCopyAll} onClick={onCopyAll}>
