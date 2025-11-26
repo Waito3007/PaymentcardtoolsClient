@@ -22,7 +22,7 @@ const algorithms = [
 function App() {
   const [apiBase, setApiBase] = useState(() => {
     const saved = localStorage.getItem(localStorageKey);
-    return saved || "http://localhost:5156";
+    return saved || import.meta.env.VITE_API_BASE_URL || "http://localhost:5156";
   });
 
   const [singleKey, setSingleKey] = useState("");
@@ -46,7 +46,7 @@ function App() {
 
   const [algorithm, setAlgorithm] = useState(() => {
     const saved = localStorage.getItem(localAlgorithmKey);
-    return saved || "1";
+    return saved || import.meta.env.VITE_DEFAULT_ALGORITHM || "1";
   });
 
   useEffect(() => {

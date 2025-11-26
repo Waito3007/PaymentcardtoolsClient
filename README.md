@@ -32,6 +32,28 @@ hoặc nếu sử dụng yarn:
 yarn install
 ```
 
+### 3. Cấu hình biến môi trường
+
+Copy file `.env.example` thành `.env` và điều chỉnh các giá trị phù hợp:
+
+```bash
+cp .env.example .env
+```
+
+Các biến môi trường có sẵn:
+
+- `VITE_API_BASE_URL`: URL của API backend (mặc định: `http://localhost:5156`)
+- `VITE_DEFAULT_ALGORITHM`: Thuật toán mã hóa mặc định (1 = 3DES, 2 = DES)
+
+Ví dụ file `.env`:
+
+```env
+VITE_API_BASE_URL=http://localhost:5156
+VITE_DEFAULT_ALGORITHM=1
+```
+
+**Lưu ý:** Sau khi thay đổi file `.env`, bạn cần restart dev server để áp dụng thay đổi.
+
 ## Khởi động ứng dụng
 
 ### Development mode
